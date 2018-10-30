@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<input @input="onInput" type="text">
+	<div class="search-bar">
+		<input @input="onInput" type="text" placeholder="Search">
 	</div>
 </template>
 
@@ -15,5 +15,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+input {
+	width: 75%;
+	padding: 0 1rem;
+}
+.search-bar {
+	text-align: center;
+	margin: 1rem;
+}
 </style>

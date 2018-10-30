@@ -1,8 +1,10 @@
 <template>
-	<div>
+	<div class="container-fluid">
 		<SearchBar @termChange="onTermChange"></SearchBar>
-		<p>Hi there!!!</p>
-		<VideoList :videos="videos"></VideoList>
+		<div class="row">
+			<VideoDetail :video="selectedVideo"></VideoDetail>
+			<VideoList :videos="videos" @videoSelect="onVideoSelect"></VideoList>
+		</div>
 	</div>
 </template>
 
@@ -11,6 +13,7 @@ import axios from 'axios';
 
 import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList';
+import VideoDetail from './components/VideoDetail';
 
 const YT = 'AIzaSyDcR8cfDurpI5t1grN7s2zxCm4p239Jv0Y';
 
@@ -19,10 +22,12 @@ export default {
 	components: {
 		SearchBar,
 		VideoList,
+		VideoDetail,
 	},
 	data() {
 		return {
 			videos: [],
+			selectedVideo: null,
 		};
 	},
 	methods: {
@@ -37,13 +42,14 @@ export default {
 					},
 				});
 				this.videos = data.items;
-			} catch (err) {
-				// console.error(err);
-			}
+			} catch (err) {}
+		},
+		onVideoSelect(video) {
+			this.selectedVideo = video;
 		},
 	},
 };
 </script>
 
-<style>
+<style scoped>
 </style>
